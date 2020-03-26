@@ -16,4 +16,3 @@ Currenlty supported extensions for documents
 pip install watchdog
 ```
 create a folder on desktop named TestFolder, and two folders within named Images and Documents
-------
