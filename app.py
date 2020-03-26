@@ -7,14 +7,31 @@ import os
 import json
 import os.path
 
-
 class FileHandler(FileSystemEventHandler):
   i=1
   def on_modified(self, event):
     for filename in os.listdir(folder_tracked):
-      src = folder_tracked + "/" + filename
-      new_destination = folder_destination + '/' + filename
-      os.rename(src, new_destination)
+      extension = os.path.splitext(filename)[1]
+      print('ex: ' + extension)
+      if (extension == '.jpeg') or (extension == '.jpg') or (extension == '.png'):
+        print(filename + ' is moving to folder Images')
+        src = folder_tracked + "/" + filename
+        new_destination = folder_destination + '/TestFolder/Images/' + filename
+        os.rename(src, new_destination)
+      elif (extension == '.doc') or (extension == '.docx') or (extension == '.pdf'):
+        print(filename + ' is moving to folder Documents')
+        src = folder_tracked + "/" + filename
+        new_destination = folder_destination + '/TestFolder/Documents/' + filename
+        os.rename(src, new_destination)
+      else:
+        print(filename + ' is moving to root folder (TestFolder)')
+        src = folder_tracked + "/" + filename
+        new_destination = folder_destination + '/TestFolder/' + filename
+        os.rename(src, new_destination)
+
+      # src = folder_tracked + "/" + filename
+      # new_destination = folder_destination + '/' + filename
+      # os.rename(src, new_destination)
 
 homedir = os.path.expanduser("~")
 
